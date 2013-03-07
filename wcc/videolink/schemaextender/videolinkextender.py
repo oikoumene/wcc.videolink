@@ -30,6 +30,7 @@ class VideoLinkExtender(grok.Adapter):
         ExtensionStringField('video_url',
             required=False,
             storage=atapi.AttributeStorage(),
+            schemata='settings',
             widget=ExtensionStringField._properties['widget'](
                 label=_(u'Video Link'),
                 description=_(u'Link to video on youtube')
