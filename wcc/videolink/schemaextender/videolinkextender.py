@@ -5,7 +5,7 @@ from Products.Archetypes import atapi
 from Products.ATContentTypes.interfaces import IATContentType
 from zope.interface import Interface
 from five import grok
-from wcc.videolink.interfaces import IProductSpecific
+from wcc.videolink.interfaces import IProductSpecific, IVideoLinkEnabled
 from wcc.videolink import MessageFactory as _
 
 # Visit http://pypi.python.org/pypi/archetypes.schemaextender for full 
@@ -18,7 +18,7 @@ class VideoLinkExtender(grok.Adapter):
 
     # This applies to all AT Content Types, change this to
     # the specific content type interface you want to extend
-    grok.context(IATContentType)
+    grok.context(IVideoLinkEnabled)
 
     grok.implements(IOrderableSchemaExtender, IBrowserLayerAwareExtender)
     grok.provides(IOrderableSchemaExtender)
@@ -27,11 +27,11 @@ class VideoLinkExtender(grok.Adapter):
 
     fields = [
         # add your extension fields here
-        ExtensionStringField('video_link',
+        ExtensionStringField('video_url',
             required=False,
             storage=atapi.AttributeStorage(),
-            widget=ExtensionStringField._property['widget'](
-                title=_(u'Video Link'),
+            widget=ExtensionStringField._properties['widget'](
+                label=_(u'Video Link'),
                 description=_(u'Link to video on youtube')
             )
         )
