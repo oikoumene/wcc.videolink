@@ -19,7 +19,7 @@ class VideoLinkExtender(grok.Adapter):
     # This applies to all AT Content Types, change this to
     # the specific content type interface you want to extend
     grok.context(IVideoLinkEnabled)
-
+    grok.name('wcc.videolink.videolinkextender')
     grok.implements(IOrderableSchemaExtender, IBrowserLayerAwareExtender)
     grok.provides(IOrderableSchemaExtender)
 
